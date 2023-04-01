@@ -3,7 +3,7 @@ import json
 
 class Database:
     def __init__(self, name: str):
-        self.name = name
+        self.name = name + ".json"
 
     def load(self):
         with open(self.name, 'r') as f:
