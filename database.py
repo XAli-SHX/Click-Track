@@ -7,9 +7,12 @@ class Database:
         self.data = None
 
     def load(self):
-        with open(self.name, 'r') as f:
-            self.data = json.load(f)
-            f.close()
+        try:
+            with open(self.name, 'r') as f:
+                self.data = json.load(f)
+                f.close()
+        except IOError:
+            pass
 
     def save(self):
         with open(self.name, 'w') as f:
