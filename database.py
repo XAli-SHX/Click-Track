@@ -4,20 +4,21 @@ import json
 class Database:
     def __init__(self, name: str):
         self.name = name + ".json"
+        self.data = None
 
     def load(self):
         with open(self.name, 'r') as f:
-            db = json.load(f)
+            self.data = json.load(f)
             f.close()
-            return db
 
-    def save(self, database):
+    def save(self):
         with open(self.name, 'w') as f:
-            json.dump(database, f)
+            json.dump(self.data, f)
             f.close()
 
     def connect(self):
-        return self.load()
+        self.load()
 
-    def disconnect(self, database):
-        self.save(database)
+    def disconnect(self):
+        self.save()
+        self.data = None
